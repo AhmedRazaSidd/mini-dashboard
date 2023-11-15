@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Home Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-color: rgba(122, 122, 122, 0.2);
+            min-width: min-content;
+        }
+
+        header {
+            background-color: #607799;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .submenu-item-selected {
+            background-color: white;
+            color: #607799;
+        }
+
+        .user-menu {
+            display: none;
+            position: absolute;
+            background-color: #607799;
+            border: 1px solid #ccc;
+            right: 0;
+            top: 48px;
+        }
+
+        .sub-submenu.sub-dropdown {
+            left: 100%;
+            transform: translateY(-31px);
+        }
+
+        .user-menu-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .user-menu-item:hover {
+            background-color: #1d4eaa;
+        }
+
+        .user:hover .user-menu {
+            display: block;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
+        nav {
+            color: white;
+        }
+
+        ul.nav-list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-list-item,
+        .nav-list-item1 {
+            padding: 10px 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .submenu,
+        .sub-submenu {
+            display: none;
+            position: absolute;
+            background-color: #607799;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+
+        .submenu-item,
+        .sub-submenu-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: clip;
+            width: auto;
+            font-size: small;
+        }
+
+        .submenu-item:hover,
+        .sub-submenu-item:hover {
+            background-color: white;
+            color: #607799;
+        }
+
+        .nav-list-item:hover .submenu,
+        .nav-list-item1:hover .submenu {
+            display: block;
+        }
+
+        .sub-submenu-item {
+            color: white;
+        }
+
+        .sub-submenu-item:hover {
+            background-color: white;
+            color: #607799;
+        }
+
+        .user-name {
+            cursor: pointer;
+        }
+
+        .user-name:hover,
+        .nav-list-item:hover span,
+        .nav-list-item1:hover span {
+            color: #cbc86e;
+        }
+
+        ::marker {
+            color: #607799;
+        }
+
+        span {
+            font-family: system-ui;
+            font-weight: bold;
+        }
+
+        .nav-list-item:hover .submenu,
+        .submenu-item:hover .sub-submenu {
+            display: block;
+        }
+
+        .submenu-item:hover .submenu {
+            display: none;
+        }
+
+        .logo {
+            width: 40px;
+            height: auto;
+        }
+
+        .employee-info {
+            display: flex;
+            align-items: center;
+            /* Align items in the center */
+        }
+
+        .employee-info img {
+            margin-right: 10px;
+            /* Add margin to separate the icon from text */
+        }
+
+        .employee-name {
+            font-size: 18px;
+            font-weight: bold;
+            white-space: nowrap;
+            /* Prevent text from wrapping to the next line */
+        }
+
+        .job-title {
+            font-size: 14px;
+        }
+
+        .container {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 6px;
+            padding: 30px;
+            margin: 0 15px;
+            background-color: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container header {
+            position: relative;
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+
+        }
+
+        .container header::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            height: 3px;
+            width: 27px;
+            border-radius: 8px;
+
+        }
+
+        .labelresult {
+
+            margin-left: 65%;
+            margin-top: 5px;
+        }
+
+        .container form {
+            position: relative;
+            margin-top: 16px;
+            min-height: 550px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+
+        .container form .form {
+            position: absolute;
+            background-color: #fff;
+            transition: 0.3s ease;
+        }
+
+        .container form .form.second {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(100%);
+        }
+
+        form.secActive .form.second {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(0);
+        }
+
+        form.secActive .form.first {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-100%);
+        }
+
+        .container form .title {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 22px;
+            font-weight: 500;
+            margin: 6px 0;
+            color: #333;
+            border-radius: 10px;
+
+
+        }
+
+        .container form .fields {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        form .fields .input-field {
+            display: flex;
+            /* width: calc(100% / 3 - 15px); */
+            width: 100%;
+            flex-direction: column;
+            margin: 4px 0;
+        }
+
+        .btnsave {
+            background: #607799;
+            border-radius: 10px;
+            font-family: Arial;
+            color: #ffffff;
+            font-size: 20px;
+            padding: 5px 6px 5px 6px;
+            border: 1ch;
+        }
+
+        .btnsave:hover {
+            background: #9bbbd2;
+            text-decoration: none;
+        }
+
+        .btncancel {
+            background: #607799;
+            border-radius: 10px;
+            font-family: Arial;
+            color: #ffffff;
+            font-size: 20px;
+            padding: 5px 6px 5px 6px;
+            border: 1ch;
+        }
+
+        .btncancel:hover {
+            background: #9bbbd2;
+            text-decoration: none;
+        }
+
+        .input-field label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #2e2e2e;
+            text-wrap: nowrap;
+        }
+
+        .input-field input,
+        select {
+            outline: none;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333;
+            border-radius: 5px;
+            border: 1px solid #aaa;
+            padding: 0 15px;
+            height: 42px;
+            margin: 8px 0;
+        }
+
+        .input-field input :focus,
+        .input-field select:focus {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+        }
+
+        .input-field select,
+        .input-field input[type="date"] {
+            color: #000000;
+        }
+
+        .input-field input[type="date"]:valid {
+            color: #333;
+        }
+
+        .container form button,
+        .backBtn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 45px;
+            max-width: 200px;
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #fff;
+            border-radius: 5px;
+            margin: 25px 0;
+            background-color: #7692de;
+            transition: all 0.3s linear;
+            cursor: pointer;
+        }
+
+        .form-group1 {
+            margin: 10%;
+        }
+
+        .submenu.employee-dropdown {
+            right: 10%;
+        }
+
+        label {
+            display: block;
+            margin: 8px 0px;
+        }
+
+        input {
+            width: 97%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid lightgrey;
+        }
+
+        select {
+            height: max-content;
+            width: 97%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid lightgrey;
+        }
+
+        textarea {
+            height: 100px;
+            width: 97% !important;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid lightgrey;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form_submit {
+            display: flex;
+            padding: 12px;
+            gap: 12px;
+            justify-content: end;
+        }
+
+        .form_submit input {
+            padding: 10px !important;
+            width: max-content !important;
+        }
+
+        .btnsave {
+            padding: 10px !important;
+        }
+
+        .first {
+            position: relative !important;
+        }
+
+        .buttonssaca {
+            display: flex;
+            padding: 12px;
+            gap: 12px;
+            justify-content: end;
+            width: 100%;
+        }
+
+        .buttonssaca input {
+            padding: 10px !important;
+            width: max-content !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-list-item">
+                        <img src="https://crm.zahrawigroup.info/style/dist/img/homepageicon.png" alt="Home">
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi ▼</span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <li class="nav-list-item">
+            <span>Employee name ▼</span>
+            <div class="submenu employee-dropdown">
+                <div class="submenu-item" onclick="showHTML('Welcome to Profile')">
+                    <img src="https://crm.zahrawigroup.info/public/gallery_image/person-removebg-preview.png"
+                        alt="Employee Photo" style="width: 17px; height: 17px;"> Profile
+                </div>
+
+                <div class="submenu-item">
+                    <img src="https://crm.zahrawigroup.info/public/gallery_image/logout-icon.png" alt="Employee Photo"
+                        style="width: 17px; height: 17px;">Logout
+                </div>
+            </div>
+        </li>
+    </header>
+    <div id="message-container" style="padding: 20px; margin-top: 20px; background-color: #fff; color: #333;">Welcome to
+        employee website ☺</div>
+
+
+    <script>
+        function showHTML(message) {
+            const messageContainer = document.getElementById('message-container');
+            switch (message) {
+                case 'Leave Request':
+                    messageContainer.innerHTML = `<div class="container" style="max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif;">
+        <header style="background-color: #607799; color: white; text-align: center; padding: 10px; font-size: 24px; font-weight: bold;">
+            Leave Request
+        </header>
+
+        <form id="my-form" action="#" style="margin-top: 20px;">
+
+            <span class="title" style="display: block; font-size: 18px; margin-bottom: 10px;">Primary information</span>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Nature of Leave</label>
+                    <select class="form-control" id="custrecord_leaverequests_natureofleave" required style="margin-top: -1px; width: 100%;" onchange="validation()">
+                        <option value=""></option>
+                        <option value="nl3">Annual</option>
+                        <option value="nl4">Sick</option>
+                        <option value="nl5">Maternity</option>
+                        <option value="nl6">Paternity / Parental</option>
+                        <option value="nl7">Marriage</option>
+                        <option value="nl8">Emergency</option>
+                        <option value="nl9">Examination</option>
+                        <option value="n10">Pilgrimage (HAJJ)</option>
+                        <option value="nl11">Iddah</option>
+                        <option value="nl12">Religious</option>
+                        <option value="nl13">Unpaid</option>
+                    </select>
+                    <span id="dangertxtnatofleave" class="custrecord_leaverequests_natureofleave" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Leave Start Date</label>
+                    <input class="form-control" type="date" id="custrecord_leaverequests_startdate" value="startdate" onchange="daysDifference()" required>
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_startdate" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Leave End Date</label>
+                    <input class="form-control" type="date" id="custrecord_leaverequests_enddate" value="enddate" onchange="daysDifference()" required>
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_enddate" style="color: red; font-size: 12px;"></span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label style="font-weight: bold;">MEMO</label>
+                    <textarea class="form-control" placeholder="Enter your note here" id="custrecord_leaverequests_memo" required name="custrecordleaverequestsmemo" style="width: 100%;"></textarea>
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_memo" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <p style="color: #32A80F; margin-top: 30px; margin-left: 20px;" id="result"></p>
+                </div>
+            </div>
+
+            <span class="title" style="display: block; font-size: 18px; margin-top: 20px;">Emergency Contact(Friend/Relative)</span>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Emergency Contact</label>
+                    <input class="form-control" type="text" placeholder="Enter name here" required id="custrecord_leaverequests_emgcontact_name" name="emergencycontact">
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_emgcontact_name" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">E-Mail</label>
+                    <input class="form-control" type="email" placeholder="Enter E-mail here" id="custrecord_leaverequests_emgcontact_mail" name="emailemergency" required>
+                    <span id="dangertxtemgemail" class="custrecord_leaverequests_emgcontact_mail" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Mobile Number</label>
+                    <input class="form-control" type="number" placeholder="mobile number" required id="custrecord_leaverequests_emgcontact_mb" value="mobileemergency">
+                    <span id="dangertxtemgmobile" class="custrecord_leaverequests_emgcontact_mb" style="color: red; font-size: 12px;"></span>
+                </div>
+            </div>
+
+            <span class="title" style="display: block; font-size: 18px; margin-top: 20px;">Replacement</span>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Employee Name</label>
+                    <input class="form-control" type="text" placeholder="Enter name here" required id="custrecord_leaverequests_replacement" name="repnameemp">
+                    <span id="dangertxtempname" class="custrecord_leaverequests_replacement" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">E-Mail</label>
+                    <input class="form-control" type="email" placeholder="Enter E-mail here" required id="custrecord_leaverequests_replcmntmail" name="repemailemp">
+                    <span id="dangertxtempmail" class="custrecord_leaverequests_replcmntmail" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Mobile Number</label>
+                    <input class="form-control" type="number" placeholder="mobile number" required id="custrecord_leaverequests_replcmntmobile" value="repmobileemp">
+                    <span id="dangertxtempmobile" class="custrecord_leaverequests_replcmntmobile" style="color: red; font-size: 12px;"></span>
+                    <div class="form_submit">
+                <input class="btnsave" onclick="reformatDate(); daysDifference(); validation(); validate();" type="button" value="Save">
+                <input class="btncancel" onclick="window.location.reload()" type="button" value="Cancel">
+            </div>
+                    </div>
+               
+            </div>
+
+            
+        </form>
+    </div>`;
+                    break;
+                case 'ovRequest':
+                    messageContainer.innerHTML = `<div class="container" style="max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif;">
+        <header style="background-color: #607799; color: white; text-align: center; padding: 10px; font-size: 24px; font-weight: bold;">
+            Overtime Form
+        </header>
+
+        <form id="my-form" action="#" style="margin-top: 20px;">
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Month</label>
+                    <input class="form-control" type="text" placeholder="Month here" required id="custrecord_leaverequests_emgcontact_name" name="emergencycontact">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Year</label>
+                    <input class="form-control" type="text" id="custrecord_leaverequests_startdate" placeholder="Year here" onchange="daysDifference()" required>
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_startdate" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Normal OT</label>
+                    <input class="form-control" type="text" id="custrecord_leaverequests_startdate" placeholder="0" onchange="daysDifference()" required>
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_startdate" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Double OT</label>
+                    <input class="form-control" type="text" id="custrecord_leaverequests_startdate" placeholder="0" onchange="daysDifference()" required>
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_startdate" style="color: red; font-size: 12px;"></span>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label style="font-weight: bold;">Date</label>
+                    <input class="form-control" type="date" id="custrecord_leaverequests_startdate" placeholder="startdate" onchange="daysDifference()" required>
+                    <span id="dangertxtemgcontact" class="custrecord_leaverequests_startdate" style="color: red; font-size: 12px;"></span>
+                    <div style="float: right; margin-top: 20px;">
+                 <input class="btnsave" onclick="reformatDate(); daysDifference(); validation(); validate();" type="button" value="Save">
+                 </div>
+                </div>
+
+            </div>
+
+            
+        </form>
+    </div>`;
+                    break;
+                case 'TravelRequest':
+                    messageContainer.innerHTML = `  <div class="container" style="max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif;">
+        <header style="background-color: #607799; color: white; text-align: center; padding: 10px; font-size: 24px; font-weight: bold;">
+            Travel Expense Module
+        </header>
+
+        <form action="#" style="margin-top: 20px;">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title" style="font-weight: bold; font-size: 18px;">Primary information</span>
+                    <div class="fields" style="margin-top: 10px;">
+                        <div class="input-field" id="custrecord_leaverequests_natureofleave">
+                            <label>Type of Travel expense</label>
+                            <select required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                                <option disabled selected>Select Here</option>
+                                <option>INTERNATIONAL</option>
+                                <option>LOCAL</option>
+                                <option>NUCLEAR MEDICINE CLEARANCE</option>
+                            </select>
+                        </div>
+                        <div class="buttonssaca" style="margin-top: 20px; text-align: right;">
+                        <input class="btnsave" type="submit" value="Save" style="margin-right: 10px;">
+                        <input class="btncancel" type="button" value="Cancel">
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+    </div>`;
+                    break;
+                case 'EmployeeDashboard':
+                    messageContainer.innerHTML = `<div class="container1" style="width: 100%; border-collapse: collapse;">
+        <h1>Employee Dashboard</h1>
+        <table style="border-collapse: collapse; width: 100%;">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Name</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Employee Code</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Email</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Gender</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Birth Date</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Hire Date</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Joining Date</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Last Working Date</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Status</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Job Title</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Grade</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Line Manager</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Business Unit Manager</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Division Manager</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Head of Department</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Mobile</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Marital Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold; white-space: nowrap;">Mohamed ELRIFAII</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; color: #607799; white-space: nowrap;">EMP001</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; font-style: italic; white-space: nowrap;">mohamed@example.com</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; text-transform: uppercase; white-space: nowrap;">Male</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2; white-space: nowrap;">1985-05-15</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; color: #28a745; white-space: nowrap;">2021-01-10</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; white-space: nowrap;">2021-02-01</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; color: #dc3545; white-space: nowrap;">2023-05-20</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold; color: #28a745; white-space: nowrap;">Active</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; font-style: italic; white-space: nowrap;">Software support</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; white-space: nowrap;">Senior</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; white-space: nowrap;">Mohamad Haidar</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; white-space: nowrap;">Mohammad Haidar</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; white-space: nowrap;">Mohamad Haidar</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; white-space: nowrap;">Shakil Patel</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; font-family: 'Courier New'; white-space: nowrap;">+123456789</td>
+                    <td style="border: 1px solid #ddd; padding: 8px; font-weight: bold; color: #607799; white-space: nowrap;">Married</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>`;
+                    break;
+                case 'PayslipDashboard':
+                    messageContainer.innerHTML = `<h2>Payslip Dashboard Page</h2><p>This is the content for the Payslip Dashboard page.</p>`;
+                    break;
+                case 'newemployee':
+                    messageContainer.innerHTML = `<body>
+    <div class="container" style="max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif;">
+        <form id="employee-form" action="insert-employee.php" method="post" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; display: flex; flex-wrap: wrap; gap: 20px;">
+
+            <div style="flex: 1;">
+
+                <div class="form-group1">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter employee name" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="code">Empcode</label>
+                    <input type="text" name="code" id="code" placeholder="Enter employee code" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="subsidiary">Subsidiary</label>
+                    <select name="subsidiary" id="subsidiary" required="">
+                        <option value="AZM">AZM</option>
+                        <option value="AZQ">AZQ</option>
+                        <option value="AZB">AZB</option>
+                        <option value="AZO">AZO</option>
+                        <option value="DAZ">DAZ</option>
+                        <option value="MTC">MTC</option>
+                    </select>
+                </div>
+
+                <div class="form-group1">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter employee email" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="gender">Gender</label>
+                    <select name="gender" id="gender" required="">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group1">
+                    <label for="birthdate">Birth Date</label>
+                    <input type="date" name="birthdate" id="birthdate" required="">
+                </div>
+
+            </div>
+
+            <div style="flex: 1;">
+
+                <div class="form-group1">
+                    <label for="hiredate">Hire Date</label>
+                    <input type="date" name="hiredate" id="hiredate" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="joiningdate">Joining Date</label>
+                    <input type="date" name="joiningdate" id="joiningdate" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="lastworkingdate">Last Working Date</label>
+                    <input type="date" name="lastworkingdate" id="lastworkingdate" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="status">Status</label>
+                    <select name="status" id="status" required="">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="form-group1">
+                    <label for="jobtitle">Job Title</label>
+                    <input type="text" name="jobtitle" id="jobtitle" placeholder="Enter employee job title" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="grade">Grade</label>
+                    <input type="text" name="grade" id="grade" placeholder="Enter employee grade" required="">
+                </div>
+
+            </div>
+
+            <div style="flex: 1;">
+
+                <div class="form-group1">
+                    <label for="linemanager">Line Manager</label>
+                    <input type="text" name="linemanager" id="linemanager" placeholder="Enter employee line manager" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="businessunitmanager">Business Unit Manager</label>
+                    <input type="text" name="businessunitmanager" id="businessunitmanager" placeholder="Enter employee business unit manager" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="divisionmanager">Division Manager</label>
+                    <input type="text" name="divisionmanager" id="divisionmanager" placeholder="Enter employee division manager" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="headofdepartment">Head Of Department</label>
+                    <input type="text" name="headofdepartment" id="headofdepartment" placeholder="Enter employee head of department" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="mobile">Mobile</label>
+                    <input type="text" name="mobile" id="mobile" placeholder="Enter employee mobile" required="">
+                </div>
+
+                <div class="form-group1">
+                    <label for="maritalstatus">Marital Status</label>
+                    <select name="maritalstatus" id="maritalstatus" required="">
+                        <option value="Married">Married</option>
+                        <option value="Single">Single</option>
+                        <option value="Divorced">Divorced</option>
+                    </select>
+                </div>
+
+                <div class="form-group1">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter employee password" required="">
+                </div>
+
+            </div>
+
+            <div style="width: 100%; text-align: center; margin-top: 20px;">
+                <input type="submit" value="Insert Employee" style="padding: 10px 20px; background-color: #607799; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+            </div>
+        </form>
+    </div>
+</body>`;
+                    break;
+                case 'Welcome to Profile':
+                    messageContainer.innerHTML = `<h2>Profile Page</h2><p>This is the content for the Profile page.</p>`;
+                    break;
+                // Add more cases for other messages
+
+                default:
+                    messageContainer.innerHTML = ''; // Clear content for unknown messages
+            }
+        }
+    </script
+</body>
+
+</html>
