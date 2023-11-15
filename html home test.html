@@ -72,11 +72,18 @@
             margin: 0;
             padding: 0;
             display: flex;
+            align-items: center;
         }
-
+        .nav-list-item span svg{
+            fill: #FFF;
+            transform: translateY(6px);
+        }
+        .nav-list-item span svg path{
+            fill: #FFF;
+        }
         .nav-list-item,
         .nav-list-item1 {
-            padding: 10px 20px;
+            padding: 10px 10px;
             cursor: pointer;
             position: relative;
         }
@@ -88,6 +95,7 @@
             background-color: #607799;
             border: 1px solid #ccc;
             width: 200px;
+            z-index: 100;
         }
 
         .submenu-item,
@@ -130,6 +138,9 @@
         .nav-list-item:hover span,
         .nav-list-item1:hover span {
             color: #cbc86e;
+        }
+        .nav-list-item:hover  svg path{
+            fill: #cbc86e !important;
         }
 
         ::marker {
@@ -426,21 +437,467 @@
             padding: 10px !important;
             width: max-content !important;
         }
+
+        .top-bar {
+            margin: auto;
+            width: 97%;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-bar h3 {
+            margin: 0px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #fff;
+            padding: 4px 10px;
+        }
+        .search-bar input{
+            width: 400px;
+            background-color: transparent;
+            border: none;
+        }
     </style>
 
 </head>
 
 <body>
+    <div class="top-bar">
+        <h3>LOGO HERE</h3>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <svg viewBox="0 0 24 24" width="25" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </svg>
+        </div>
+        <div class="nav-list-item">
+            <span>Employee name ▼</span>
+            <div class="submenu employee-dropdown">
+                <div class="submenu-item" onclick="showHTML('Welcome to Profile')">
+                    <img src="https://crm.zahrawigroup.info/public/gallery_image/person-removebg-preview.png"
+                        alt="Employee Photo" style="width: 17px; height: 17px;"> Profile
+                </div>
+
+                <div class="submenu-item">
+                    <img src="https://crm.zahrawigroup.info/public/gallery_image/logout-icon.png" alt="Employee Photo"
+                        style="width: 17px; height: 17px;">Logout
+                </div>
+            </div>
+        </div>
+    </div>
     <header>
         <div class="nav-container">
-
             <nav>
                 <ul class="nav-list">
-                    <li class="nav-list-item">
+                    <li class="nav-list-item" style="display: flex; align-items: center; justify-content: center;">
                         <img src="https://crm.zahrawigroup.info/style/dist/img/homepageicon.png" alt="Home">
                     </li>
                     <li class="nav-list-item">
-                        <span>Zahrawi ▼</span>
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
+                        <div class="submenu">
+                            <div class="submenu-item">
+                                Leave Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('Leave Request')">
+                                        New Leave request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Overtime Dashboard
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('ovRequest')">
+                                        New Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Travel Request
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('TravelRequest')">
+                                        New Travel Request
+                                    </div>
+                                    <div class="sub-submenu-item">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Employee
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('newemployee')">
+                                        New Employee
+                                    </div>
+                                    <div class="sub-submenu-item" onclick="showHTML('EmployeeDashboard')">List</div>
+                                </div>
+                            </div>
+                            <div class="submenu-item">
+                                Payslip List
+                                <div class="sub-submenu sub-dropdown">
+                                    <div class="sub-submenu-item" onclick="showHTML('PayslipDashboard')">
+                                        Payslip Dashboard
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-list-item">
+                        <span>Zahrawi <svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7071 14.7071C12.3166 15.0976 11.6834 15.0976 11.2929 14.7071L6.29289 9.70711C5.90237 9.31658 5.90237 8.68342 6.29289 8.29289C6.68342 7.90237 7.31658 7.90237 7.70711 8.29289L12 12.5858L16.2929 8.29289C16.6834 7.90237 17.3166 7.90237 17.7071 8.29289C18.0976 8.68342 18.0976 9.31658 17.7071 9.70711L12.7071 14.7071Z" fill="#000000"></path> </g></svg></span>
                         <div class="submenu">
                             <div class="submenu-item">
                                 Leave Request
@@ -491,20 +948,6 @@
                 </ul>
             </nav>
         </div>
-        <li class="nav-list-item">
-            <span>Employee name ▼</span>
-            <div class="submenu employee-dropdown">
-                <div class="submenu-item" onclick="showHTML('Welcome to Profile')">
-                    <img src="https://crm.zahrawigroup.info/public/gallery_image/person-removebg-preview.png"
-                        alt="Employee Photo" style="width: 17px; height: 17px;"> Profile
-                </div>
-
-                <div class="submenu-item">
-                    <img src="https://crm.zahrawigroup.info/public/gallery_image/logout-icon.png" alt="Employee Photo"
-                        style="width: 17px; height: 17px;">Logout
-                </div>
-            </div>
-        </li>
     </header>
     <div id="message-container" style="padding: 20px; margin-top: 20px; background-color: #fff; color: #333;">Welcome to
         employee website ☺</div>
@@ -756,10 +1199,12 @@
                 case 'newemployee':
                     messageContainer.innerHTML = `<body>
     <div class="container" style="max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif;">
+        <header style="background-color: #607799; color: white; justify-content:center; text-align: center; padding: 10px; font-size: 24px; font-weight: bold;">
+            Employee
+        </header>
         <form id="employee-form" action="insert-employee.php" method="post" style="padding: 20px; border: 1px solid #ddd; border-radius: 8px; display: flex; flex-wrap: wrap; gap: 20px;">
 
             <div style="flex: 1;">
-
                 <div class="form-group1">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name" placeholder="Enter employee name" required="">
